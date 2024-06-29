@@ -26,7 +26,14 @@ SECRET_KEY = 'django-insecure-pd#=v!^qmf#=q*ppt2np64n5b=bqxuq6ofi$u+jac-r9-w##^_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [url for url in os.environ.get('DJANGO_ALLOWED_HOSTS').split(' ')]
+ALLOWED_HOSTS = [
+    '127.0.0.1:8000',
+    '127.0.0.1',
+    'localhost',
+    'localhost:8000',
+    '188.225.10.212',
+    'lewbertsklol-vita-manicure-7ee5.twc1.net'
+]
 
 
 # Application definition
