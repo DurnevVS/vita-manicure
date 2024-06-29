@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+  <div class="bg-image-1" style="min-height: 100vh;">
+    <div class="img-overlay d-flex justify-content-center align-items-center">
+      <div class="row">
+        <div class="col text-center">
+          <h1>Ваша заявка принята!</h1>
+          <h2>Я свяжусь с вами в ближайшее время</h2>
+          <a href="{% url 'main:index' %}" class="btn btn-warning">Вернуться на главную</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

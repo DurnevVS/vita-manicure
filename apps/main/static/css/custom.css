@@ -23,6 +23,14 @@
     min-height: 93vh;
     position: relative;
 }
+.bg-image-4 {
+    background-image: url(../images/bg-4.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0% 30%;
+    min-height: 93vh;
+    position: relative;
+}
 
 .img-overlay {
     position: absolute;

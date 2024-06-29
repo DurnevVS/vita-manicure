@@ -19,7 +19,8 @@
                         <img src="{% static 'icons/star-fill.svg' %}" alt="" />
                       {% endfor %}
                     </div>
-                    <p class="card-text text-center text-truncate">{{ reviews.0.text }}</p>
+                    <p class="d-none d-sm-block card-text text-center">{{ reviews.0.text }}</p>
+                    <p class="d-bloc d-sm-none card-text text-center text-truncate">{{ reviews.0.text }}</p>
                     <p class="card-text text-center">
                       <small class="text-muted">{{ reviews.0.rated }}</small>
                     </p>
@@ -41,7 +42,8 @@
                           <img src="{% static 'icons/star-fill.svg' %}" alt="" />
                         {% endfor %}
                       </div>
-                      <p class="card-text text-center text-truncate">{{ review.text }}</p>
+                      <p class="d-none d-sm-block card-text text-center">{{ review.text }}</p>
+                      <p class="d-bloc d-sm-none card-text text-center text-truncate">{{ review.text }}</p>
                       <p class="card-text text-center">
                         <small class="text-muted">{{ review.rated }}</small>
                       </p>

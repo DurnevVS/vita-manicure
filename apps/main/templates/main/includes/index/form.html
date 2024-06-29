@@ -1,0 +1,31 @@
+<div class="bg-image-4" id="window">
+  <div class="img-overlay d-flex justify-content-center align-items-center">
+    <div class="row px-2">
+      <div class="col">
+        <form method="post" action="{% url 'main:index' %}">
+          {% csrf_token %}
+          <legend>Записаться на маникюр</legend>
+          <div class="mb-3">
+            <input type="text" id="name" name="name" class="form-control" placeholder="Ваше ФИО" required />
+          </div>
+          <div class="mb-3">
+            <input type="tel" id="phone" name="phone" class="form-control" placeholder="Номер телефона" required />
+          </div>
+          <div class="mb-3">
+            <label for="time" class="form-label">Выберите окошко</label>
+            <select id="time" class="form-select" name="window">
+              {% for window in windows %}
+                <option>{{ window.time|date:'D d.m' }} - {{ window.time|time:'H:i' }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="row">
+            <div class="col text-center">
+              <button type="submit" class="btn btn-warning">Записаться</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
