@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-pd#=v!^qmf#=q*ppt2np64n5b=bqxuq6ofi$u+jac-r9-w##^_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [url for url in os.environ.get('ALLOWED_HOSTS').split(' ')]
+ALLOWED_HOSTS = [url for url in os.environ.get('DJANGO_ALLOWED_HOSTS').split(' ')]
 
 
 # Application definition
