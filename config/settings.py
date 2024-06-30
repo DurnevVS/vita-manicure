@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-pd#=v!^qmf#=q*ppt2np64n5b=bqxuq6ofi$u+jac-r9-w##^_
 DEBUG = False
 
 ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split(',')
-CSRF_TRUSTED_ORIGINS=ALLOWED_HOSTS
+CSRF_TRUSTED_ORIGINS = [f'https://{host}' for host in ALLOWED_HOSTS]
 
 
 # Application definition
