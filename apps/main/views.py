@@ -6,8 +6,6 @@ from django.views.generic import View
 
 from .models import Window, Review
 
-from apps.bot import bot
-
 # Create your views here.
 
 
