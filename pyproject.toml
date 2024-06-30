@@ -16,6 +16,7 @@ aiogram = "^3.8.0"
 python-dotenv = "^1.0.1"
 gunicorn = "^22.0.0"
 tzdata = "^2024.1"
+whitenoise = "^6.7.0"
 
 
 [build-system]
