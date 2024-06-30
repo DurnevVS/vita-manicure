@@ -1,4 +1,5 @@
-import asyncio
+import os
+import requests
 
 from django.shortcuts import render
 from django.views.generic import View
@@ -21,7 +22,6 @@ class MainPageView(View):
         })
 
     def post(self, request):
-        print(request.POST)
         name = request.POST.get("name")
         phone = request.POST.get("phone").replace(' ', '').replace(
             '-', '').replace('(', '').replace(')', '')
@@ -36,5 +36,9 @@ class MainPageView(View):
             f'{phone}\n'
             f'{window}\n'
         )
-        asyncio.run(bot.send_message(915877828, text_to_admin))
+        requests.get(
+            'https://api.telegram.org/'
+            f'bot{os.environ.get("BOT_TOKEN")}/sendMessage?chat_id=915877828&text={text_to_admin}'
+        )
+
         return render(request, 'main/success.html')
