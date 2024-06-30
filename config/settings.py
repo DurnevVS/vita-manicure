@@ -26,17 +26,7 @@ SECRET_KEY = 'django-insecure-pd#=v!^qmf#=q*ppt2np64n5b=bqxuq6ofi$u+jac-r9-w##^_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [
-    '0.0.0.0:8000',
-    '127.0.0.1:8000',
-    '127.0.0.1',
-    'localhost',
-    'localhost:8000',
-    '92.53.104.150',
-    '92.53.104.150:443',
-    '92.53.104.150:80'
-    'lewbertsklol-vita-manicure-bfde.twc1.net'
-]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
