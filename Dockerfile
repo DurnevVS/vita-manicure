@@ -6,6 +6,8 @@ WORKDIR /app
 RUN apt update -y
 RUN pip install poetry
 RUN poetry install --no-root
+RUN poetry run python manage.py makemigrations
+RUN poetry run python manage.py migrate
 
 EXPOSE 8000
 

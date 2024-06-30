@@ -15,7 +15,9 @@ class MainPageView(View):
 
     def get(self, request):
         url = 'https://www.avito.ru/web/6/user/167e9ed21083de7ccd4230e5dda1fc4d/ratings?summary_redesign=1'
-        response = requests.get(url).json()['entries']
+        response = requests.get(url).json()
+        print(response)
+        response = response['entries']
         feedback = {
             'score': response[0]['value']['score'],
             'review_count': response[0]['value']['reviewCount'],
