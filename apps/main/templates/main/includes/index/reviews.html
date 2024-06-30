@@ -1,4 +1,5 @@
 {% load static %}
+{% load custom_tags %}
 
 <div class="bg-image-3" id="reviews">
   <div class="img-overlay d-flex justify-content-center align-items-center">
@@ -15,7 +16,7 @@
                   <div class="card-body">
                     <div class="card-title text-center">
                       <h5>{{ reviews.0.name }}</h5>
-                      {% for star in reviews.0.score %}
+                      {% for star in reviews.0.score|range_ %}
                         <img src="{% static 'icons/star-fill.svg' %}" alt="" />
                       {% endfor %}
                     </div>
@@ -38,7 +39,7 @@
                     <div class="card-body">
                       <div class="card-title text-center">
                         <h5>{{ review.name }}</h5>
-                        {% for star in review.score %}
+                        {% for star in review.score|range_  %}
                           <img src="{% static 'icons/star-fill.svg' %}" alt="" />
                         {% endfor %}
                       </div>
