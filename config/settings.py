@@ -32,8 +32,10 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
     'localhost:8000',
-    '188.225.10.212',
-    'lewbertsklol-vita-manicure-7ee5.twc1.net'
+    '92.53.104.150',
+    '92.53.104.150:443',
+    '92.53.104.150:80'
+    'lewbertsklol-vita-manicure-bfde.twc1.net'
 ]
 
 
