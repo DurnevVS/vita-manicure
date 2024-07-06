@@ -5,8 +5,12 @@
     <div class="img-overlay d-flex justify-content-center align-items-center">
       <div class="row">
         <div class="col text-center">
-          <h1>Ваша заявка принята!</h1>
-          <h2>Я свяжусь с вами в ближайшее время</h2>
+          {% if blocked %}
+            <h1>Ой, что-то пошло не так.</h1>
+          {% else %}
+            <h1>Ваша заявка принята!</h1>
+            <h2>Я свяжусь с вами в ближайшее время</h2>
+          {% endif %}
           <a href="{% url 'main:index' %}" class="btn btn-warning">Вернуться на главную</a>
         </div>
       </div>

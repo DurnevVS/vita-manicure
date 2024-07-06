@@ -1,3 +1,5 @@
+{% load widget_tweaks %}
+
 <div class="bg-image-4" id="window">
   <div class="img-overlay d-flex justify-content-center align-items-center">
     <div class="row px-2">
@@ -6,22 +8,20 @@
           {% csrf_token %}
           <legend>Записаться на маникюр</legend>
           <div class="mb-3">
-            <input type="text" id="name" name="name" class="form-control" placeholder="Ваше ФИО" required />
+            {% render_field form.name type='text' class='form-control' id='id_name' name='name' placeholder='Ваше имя' %}
+            {{ form.name.errors }}
           </div>
           <div class="mb-3">
-            <input type="tel" id="phone" name="phone" class="form-control" placeholder="Номер телефона" required />
+            {% render_field form.phone type='tel' class='form-control' id='id_phone' name='phone' placeholder='Номер телефона' %}
+            {{ form.phone.errors }}
           </div>
           <div class="mb-3">
-            <label for="time" class="form-label">Выберите окошко</label>
-            <select id="time" class="form-select" name="window">
-              {% for window in windows %}
-                <option>{{ window.time|date:'D d.m' }} - {{ window.time|time:'H:i' }}</option>
-              {% endfor %}
-            </select>
+            {% render_field form.window type='select' class='form-select' id='id_window' name='window' %}
+            {{ form.window.errors }}
           </div>
           <div class="row">
             <div class="col text-center">
-              <button type="submit" class="btn btn-warning">Записаться</button>
+              <button type="submit" class="btn btn-warning" hx-post="{% url 'main:index' %}" hx-target="#window">Записаться</button>
             </div>
           </div>
         </form>

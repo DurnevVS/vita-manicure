@@ -1,66 +1,41 @@
-from aiogram import Router, types, F
-from aiogram.filters import Command
+import telebot
+from telebot import types
 
-import requests
-
-from apps.main.models import Window, Review
-
-from datetime import datetime
-
-private_router = Router()
+from apps.main.models import Window
 
 
-@private_router.message(Command('start'))
-async def start(message: types.Message):
-    user_id = message.from_user.id
-    print(user_id)
-    await message.answer('Готов к работе!\n Отправьте расписание окошек!')
+def private_router(bot: telebot.TeleBot):
 
+    @bot.message_handler(commands=['start', 'help'])
+    def start(message: types.Message):
 
-@private_router.message(Command('reviews'))
-async def get_reviews(message: types.Message):
-    url = 'https://www.avito.ru/web/6/user/167e9ed21083de7ccd4230e5dda1fc4d/ratings?summary_redesign=1'
-    response = requests.get(url).json()
-    response = response['entries']
-    feedback = [
-        {
-            'name': review['value']['title'],
-            'avatar': review['value']['avatar'],
-            'text': review['value']['textSections'][0]['text'],
-            'score': review['value']['score'],
-            'rated': review['value']['rated'],
-        }
-        for review in response[2:]
-    ]
+        text = (
+            '1. Кнопка "Подтвердить" - запись клиента остается\n'
+            '2. Кнопка "Отменить" - запись клиента удаляется\n'
+            '3. Кнопка "Заблокировать" - запись клиента удаляется и номер заносится в черный список\n'
+        )
 
-    await Review.objects.all().adelete()
+        bot.send_message(message.chat.id, text)
 
-    for review in feedback:
-        await Review.objects.acreate(**review)
+    @bot.callback_query_handler(func=lambda call: call.data.startswith('apply'))
+    def apply(call: types.CallbackQuery):
+        bot.send_message(call.message.chat.id, "Запись подтверждена")
 
-    await message.answer('Отзывы обновлены!')
+    @bot.callback_query_handler(func=lambda call: call.data.startswith('cancel'))
+    def cancel(call: types.CallbackQuery):
+        window_id = call.data.split('-')[1]
+        window = Window.objects.get(id=window_id)
+        window.client = None
+        window.save()
+        bot.send_message(call.message.chat.id, "Запись отменена")
 
-
-@private_router.message(F.text)
-async def create_schedule(message: types.Message):
-    try:
-        Window.objects.all().adelete()
-        dates = parse_message(message.text)
-        for date in dates:
-            await Window.objects.acreate(time=date, approved=False)
-        await message.answer('Расписание создано!')
-    except:
-        await message.answer('Что-то пошло не так...')
-
-
-def parse_message(text: str):
-    lines = [line[2:] for line in text.split('\n') if line]
-    str_dates = [
-        f'{date.split(' - ')[0]}T{time}'
-        for date in lines for time in str(date.split(' - ')[1]).split(', ')
-    ]
-    dates = [
-        datetime.strptime(date.strip(), '%d.%mT%H:%M')
-        for date in str_dates
-    ]
-    return dates
+    @bot.callback_query_handler(func=lambda call: call.data.startswith('block'))
+    def block(call: types.CallbackQuery):
+        window_id = call.data.split('-')[1]
+        window = Window.objects.get(id=window_id)
+        client = window.client
+        client.blocked = True
+        client.save()
+        window.client = None
+        window.save()
+        bot.send_message(call.message.chat.id, "Запись отменена и номер добавлен в черный список")
