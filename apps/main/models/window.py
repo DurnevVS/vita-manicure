@@ -6,7 +6,7 @@ from .client import Client
 import locale
 locale.setlocale(
     category=locale.LC_ALL,
-    locale="Russian"  # Note: do not use "de_DE" as it doesn't work
+    locale="ru_RU.UTF-8"  # Note: do not use "de_DE" as it doesn't work
 )
 
 

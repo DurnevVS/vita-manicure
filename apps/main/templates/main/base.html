@@ -1,6 +1,6 @@
 {% load static %}
 {% load django_htmx %}
-{% load livereload_tags %}
+{% comment %} {% load livereload_tags %} {% endcomment %}
 <!DOCTYPE html>
 <html lang="ru">
   <head>
@@ -12,8 +12,7 @@
     <link rel="stylesheet" href="{% static 'css/custom.css' %}" />
     <script defer src="{% static 'js/htmx.min.js' %}"></script>
     <script defer src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-    <script defer src="{% static 'js/alpine.min.js' %}"></script>
-    {% livereload_script %}
+    {% comment %} {% livereload_script %} {% endcomment %}
     {% django_htmx_script %}
     <title>Вита - Маникюр</title>
   </head>
