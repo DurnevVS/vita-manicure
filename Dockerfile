@@ -4,6 +4,7 @@ COPY . /app
 WORKDIR /app
 
 RUN apt update -y
+ARG CACHEBUST=1
 RUN pip install poetry
 RUN poetry install --no-root
 

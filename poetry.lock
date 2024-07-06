@@ -156,17 +156,6 @@ files = [
 ]
 
 [[package]]
-name = "django-forms-dynamic"
-version = "1.0.0"
-description = "Resolve form field arguments dynamically when a form is instantiated, not when it's declared."
-optional = false
-python-versions = ">=3.6"
-files = [
-    {file = "django-forms-dynamic-1.0.0.tar.gz", hash = "sha256:38339fa12722c1eeebb2f22d9a996c80be19339f17de718784c16e2ba3d3bc6f"},
-    {file = "django_forms_dynamic-1.0.0-py3-none-any.whl", hash = "sha256:59ce7053b120727001cb1f21436d507017cbd8a91a0c65ebc731c399cbadab0c"},
-]
-
-[[package]]
 name = "django-htmx"
 version = "1.18.0"
 description = "Extensions for using Django with htmx."
@@ -391,4 +380,4 @@ brotli = ["brotli"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "62e955fc5990ac62ef3d2e71b030835b19cdf443708102219927ba568106a208"
+content-hash = "5aff7f5fb0c035197f8db45a1e862d40022eb3a274dade4f260455f66477f219"
