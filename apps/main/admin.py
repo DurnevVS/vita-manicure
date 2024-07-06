@@ -39,27 +39,30 @@ class ReviewAdmin(admin.ModelAdmin):
         return my_urls + urls
 
     def new_reviews(self, request):
-        url = 'https://www.avito.ru/web/6/user/167e9ed21083de7ccd4230e5dda1fc4d/ratings?summary_redesign=1'
-        response = requests.get(url).json()
-        response = response['entries']
-        feedback = [
-            {
-                'name': review['value']['title'],
-                'avatar': review['value']['avatar'],
-                'text': review['value']['textSections'][0]['text'],
-                'score': review['value']['score'],
-                'rated': review['value']['rated'],
-            }
-            for review in response[2:]
-        ]
+        try:
+            url = 'https://www.avito.ru/web/6/user/167e9ed21083de7ccd4230e5dda1fc4d/ratings?summary_redesign=1'
+            response = requests.get(url).json()
+            response = response['entries']
+            feedback = [
+                {
+                    'name': review['value']['title'],
+                    'avatar': review['value']['avatar'],
+                    'text': review['value']['textSections'][0]['text'],
+                    'score': review['value']['score'],
+                    'rated': review['value']['rated'],
+                }
+                for review in response[2:]
+            ]
 
-        Review.objects.all().delete()
+            Review.objects.all().delete()
 
-        reviews = []
-        for review in feedback:
-            reviews.append(Review(**review))
+            reviews = []
+            for review in feedback:
+                reviews.append(Review(**review))
 
-        Review.objects.bulk_create(reviews)
+            Review.objects.bulk_create(reviews)
+        except Exception:
+            pass
 
         return self.changelist_view(request)
 

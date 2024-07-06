@@ -1,3 +1,5 @@
+import os
+
 from django.shortcuts import render
 from django.views.generic import View
 
@@ -49,7 +51,7 @@ class MainPageView(View):
             if created:
                 text_to_admin += 'Новый клиент'
 
-            bot.send_message(915877828, text_to_admin, reply_markup=markup(window.id))
+            send_admins(text_to_admin, markup(window.id))
 
             response = render(request, 'main/success.html')
 
@@ -57,3 +59,8 @@ class MainPageView(View):
 
         else:
             return render(request, 'main/includes/index/form.html', {'form': form})
+
+
+def send_admins(message, markup):
+    for admin in os.environ.get("TG_ADMINS").split(","):
+        bot.send_message(int(admin), message, reply_markup=markup)

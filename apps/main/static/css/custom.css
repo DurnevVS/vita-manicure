@@ -15,6 +15,7 @@
     min-height: 93vh;
     position: relative;
 }
+
 .bg-image-3 {
     background-image: url(../images/bg-3.jpg);
     background-size: cover;
@@ -23,6 +24,7 @@
     min-height: 93vh;
     position: relative;
 }
+
 .bg-image-4 {
     background-image: url(../images/bg-4.jpg);
     background-size: cover;
