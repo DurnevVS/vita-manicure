@@ -9,6 +9,7 @@ def private_router(bot: telebot.TeleBot):
     @bot.message_handler(commands=['id'])
     def send_id(message: types.Message):
         bot.send_message(message.chat.id, message.chat.id)
+        bot.send_message(message.chat.id, message.chat.id)
 
     @bot.message_handler(commands=['start', 'help'])
     def start(message: types.Message):
