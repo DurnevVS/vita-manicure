@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     # Apps
     'apps.main',
     'apps.bot',
-
+    'apps.proxy',
 ]
 
 MIDDLEWARE = [

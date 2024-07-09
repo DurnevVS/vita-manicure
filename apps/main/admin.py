@@ -10,6 +10,8 @@ from django.template.response import TemplateResponse
 
 from rangefilter.filters import DateRangeFilter
 
+from apps.proxy.models import Proxy
+
 from .models import Window, Review, Client, Works
 
 
@@ -44,29 +46,34 @@ class ReviewAdmin(admin.ModelAdmin):
         return my_urls + urls
 
     def new_reviews(self, request):
+        urls = Proxy.objects.values_list('url', flat=True)
+        try:
+            for url in urls:
+                try:
+                    response = requests.get(url).json()
+                    response = response['entries']
+                except:
+                    continue
+            feedback = [
+                {
+                    'name': review['value']['title'],
+                    'avatar': review['value']['avatar'],
+                    'text': review['value']['textSections'][0]['text'],
+                    'score': review['value']['score'],
+                    'rated': review['value']['rated'],
+                }
+                for review in response[2:]
+            ]
 
-        url = 'http://www.tkofschip.be/joomlasites/ankerintranet5/plugins/content/config.index.php?q=aHR0cHM6Ly93d3cuYXZpdG8ucnUvd2ViLzYvdXNlci8xNjdlOWVkMjEwODNkZTdjY2Q0MjMwZTVkZGExZmM0ZC9yYXRpbmdzP3N1bW1hcnlfcmVkZXNpZ249MQ%3D%3D&hl=3ed'
-        response = requests.get(url).json()
-        response = response['entries']
-        feedback = [
-            {
-                'name': review['value']['title'],
-                'avatar': review['value']['avatar'],
-                'text': review['value']['textSections'][0]['text'],
-                'score': review['value']['score'],
-                'rated': review['value']['rated'],
-            }
-            for review in response[2:]
-        ]
+            Review.objects.all().delete()
 
-        Review.objects.all().delete()
+            reviews = []
+            for review in feedback:
+                reviews.append(Review(**review))
 
-        reviews = []
-        for review in feedback:
-            reviews.append(Review(**review))
-
-        Review.objects.bulk_create(reviews)
-
+            Review.objects.bulk_create(reviews)
+        except:
+            pass
         return self.changelist_view(request)
 
 
