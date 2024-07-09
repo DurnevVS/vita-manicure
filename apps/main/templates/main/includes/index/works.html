@@ -4,7 +4,7 @@
   <div class="carousel-inner" id="works">
     <div class="carousel-item active">
       <div class="col col-md-6 mx-auto">
-        <img src="{{ works.0.image.url }}" class="d-block w-100" alt="..." />
+        <img src="{{ works.0.url }}" class="d-block w-100" alt="..." />
       </div>
       <div class="carousel-caption">
         <a href="#window" class="btn btn-warning">Записаться</a>
@@ -13,9 +13,7 @@
     {% for work in works|slice:"1:" %}
       <div class="carousel-item">
         <div class="col col-md-6 mx-auto">
-          <img src="{{ work.image.url }}"
-               class="d-block w-100"
-               alt="{{ work.name }}" />
+          <img src="{{ work.url }}" class="d-block w-100" alt="..." />
         </div>
         <div class="carousel-caption">
           <a href="#window" class="btn btn-warning">Записаться</a>

@@ -9,7 +9,9 @@ from apps.bot import bot, markup
 
 from .models import Window, Review, Client, Works
 from .forms import RegistrationForm
+from datetime import datetime, timedelta
 
+from django.utils.timezone import get_current_timezone
 
 class MainPageView(View):
 
