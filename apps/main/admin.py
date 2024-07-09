@@ -1,18 +1,16 @@
 from datetime import datetime
-import requests
 
+import requests
+from django.contrib import admin
+from django.template.response import TemplateResponse
 from django.urls import path
 from django.utils.html import format_html
-
-from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
-from django.template.response import TemplateResponse
-
 from rangefilter.filters import DateRangeFilter
 
 from apps.proxy.models import Proxy
 
-from .models import Window, Review, Client, Works
+from .models import Client, Review, Window, Works
 
 
 @admin.register(Works)
@@ -29,6 +27,7 @@ class ClientAdmin(admin.ModelAdmin):
     times_come.short_description = _('Количество посещений')
     list_display = ('name', 'phone', 'times_come', 'blocked')
     search_fields = ('name', 'phone')
+    list_per_page = 20
 
 
 @admin.register(Review)
@@ -45,6 +44,7 @@ class ReviewAdmin(admin.ModelAdmin):
         ]
         return my_urls + urls
 
+    # Подумать нужно ли рефакторить
     def new_reviews(self, request):
         urls = Proxy.objects.values_list('url', flat=True)
         try:
@@ -55,7 +55,7 @@ class ReviewAdmin(admin.ModelAdmin):
                 except:
                     continue
                 break
-            
+
             feedback = [
                 {
                     'name': review['value']['title'],
@@ -153,7 +153,6 @@ def parse_string(text: str):
         f'{date.split(' - ')[0]}T{time}'
         for date in lines for time in date.split(' - ')[1].split(', ')
     ]
-    print(str_dates)
     str_dates = [
         f'{date.split('T')[0]}.{datetime.now().year}T{date.split('T')[1]}'for date in str_dates
         if len(date.split('.')) == 2

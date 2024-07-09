@@ -1,8 +1,9 @@
 from string import punctuation, whitespace
 from typing import Any
+
 from django import forms
-from django.utils.translation import gettext_lazy as _
 from django.forms import ValidationError
+from django.utils.translation import gettext_lazy as _
 
 from .models import Window
 
