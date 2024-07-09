@@ -54,6 +54,8 @@ class ReviewAdmin(admin.ModelAdmin):
                     response = response['entries']
                 except:
                     continue
+                break
+            
             feedback = [
                 {
                     'name': review['value']['title'],
