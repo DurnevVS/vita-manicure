@@ -1,11 +1,17 @@
+from datetime import datetime, timedelta
 from string import punctuation, whitespace
-from typing import Any
+from typing import Any, Mapping
 
 from django import forms
 from django.forms import ValidationError
+from django.forms.renderers import BaseRenderer
+from django.forms.utils import ErrorList
 from django.utils.translation import gettext_lazy as _
+from django.utils.timezone import get_current_timezone
 
 from .models import Window
+
+from django.conf import settings
 
 
 def format_phone(value):
@@ -41,6 +47,13 @@ class RegistrationForm(forms.Form):
     name = forms.CharField(required=True)
     phone = PhoneField(required=True)
     window = forms.ModelChoiceField(
-        queryset=Window.objects.filter(client=None).order_by('date'),
+        queryset=Window.objects.none(),
         empty_label=_('Выберите окошко'),
     )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['window'].queryset = Window.objects.filter(
+            client=None,
+            date__gt=datetime.now(get_current_timezone()) + timedelta(hours=19)
+        )
