@@ -4,6 +4,7 @@ COPY . /app
 WORKDIR /app
 
 RUN apt update -y
+RUN apt upgrade -y
 RUN apt-get install -y locales
 RUN sed -i -e 's/# ru_RU.UTF-8 UTF-8/ru_RU.UTF-8 UTF-8/' /etc/locale.gen 
 RUN dpkg-reconfigure --frontend=noninteractive locales
