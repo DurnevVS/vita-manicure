@@ -5,4 +5,4 @@ from .works import WorksAdmin
 
 from django.contrib import admin
 
-admin.site.index_template = 'admin/base_site.html'
+admin.site.index_template = 'admin/index.html'
