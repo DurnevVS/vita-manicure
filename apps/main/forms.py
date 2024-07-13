@@ -1,17 +1,13 @@
 from datetime import datetime, timedelta
 from string import punctuation, whitespace
-from typing import Any, Mapping
 
 from django import forms
 from django.forms import ValidationError
-from django.forms.renderers import BaseRenderer
-from django.forms.utils import ErrorList
 from django.utils.translation import gettext_lazy as _
 from django.utils.timezone import get_current_timezone
 
 from .models import Window
 
-from django.conf import settings
 
 
 def format_phone(value):
@@ -37,7 +33,7 @@ class PhoneField(forms.CharField):
     def to_python(self, value: str) -> str:
         return format_phone(value)
 
-    def validate(self, value: Any) -> None:
+    def validate(self, value) -> None:
         super().validate(value)
         validate_phone(value)
         validate_phone_lenght(value)
