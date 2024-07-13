@@ -17,7 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+
 urlpatterns = [
-    path('', include('apps.main.urls', namespace='main'), name='index'),
     path('admin/', admin.site.urls),
+    path('', include('pwa.urls')),
+    path('', include('apps.main.urls', namespace='main'), name='index'),
 ]

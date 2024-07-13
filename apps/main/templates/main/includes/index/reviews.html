@@ -1,7 +1,7 @@
 {% load static %}
 {% load custom_tags %}
 
-<div class="bg-image-3" id="reviews">
+<div class="bg-image" id="reviews" style='background-image: url("{% static 'images/bg-3.jpg' %}");background-position: 0% 30%;'>
   <div class="img-overlay d-flex justify-content-center align-items-center">
     <div class="row w-100" style="margin: auto">
       <div class="col">
@@ -11,7 +11,9 @@
               <div class="card-group">
                 <div class="card border-0 bg-transparent p-2">
                   <div class="col-md-3 mx-auto">
-                    <img src="{{ reviews.0.avatar }}" class="d-block w-50 card-img-top mx-auto rounded-circle" alt="..." />
+                    <img src="{{ reviews.0.avatar }}"
+                         class="d-block w-50 card-img-top mx-auto rounded-circle"
+                         alt="..." />
                   </div>
                   <div class="card-body">
                     <div class="card-title text-center">
@@ -34,12 +36,14 @@
                 <div class="card-group">
                   <div class="card border-0 bg-transparent">
                     <div class="col-md-3 mx-auto">
-                      <img src="{{ review.avatar }}" class="d-block w-50 card-img-top mx-auto rounded-circle" alt="..." />
+                      <img src="{{ review.avatar }}"
+                           class="d-block w-50 card-img-top mx-auto rounded-circle"
+                           alt="..." />
                     </div>
                     <div class="card-body">
                       <div class="card-title text-center">
                         <h5>{{ review.name }}</h5>
-                        {% for star in review.score|range_  %}
+                        {% for star in review.score|range_ %}
                           <img src="{% static 'icons/star-fill.svg' %}" alt="" />
                         {% endfor %}
                       </div>
@@ -54,11 +58,17 @@
               </div>
             {% endfor %}
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <button class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#carouselExampleCaptions"
+                  data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
           </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <button class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#carouselExampleCaptions"
+                  data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
