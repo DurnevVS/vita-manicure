@@ -1,6 +1,7 @@
 {% load static %}
 {% load django_htmx %}
 {% load livereload_tags %}
+
 <!DOCTYPE html>
 <html lang="ru">
   <head>
@@ -14,11 +15,10 @@
     <script defer src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     {% livereload_script %}
     {% django_htmx_script %}
-    <title>Вита - Маникюр</title>
+    <title>Вита - маникюр</title>
   </head>
   <body data-bs-theme="dark" id="body">
     {% block content %}
-
-    {% endblock %}
+    {% endblock content %}
   </body>
 </html>

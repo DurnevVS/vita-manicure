@@ -2,15 +2,19 @@
 
 <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary">
   <div class="container m-auto my-2">
-    <!-- prettier-ignore -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <a class="navbar-brand" href="{% url 'main:index' %}">Вита - Маникюр</a>
     <div class="d-flex order-lg-2">
       <ul class="navbar-nav me-2 mb-lg-0">
         <li class="nav-item">
-          <!-- prettier-ignore -->
           <a href="https://api.whatsapp.com/message/J3MYEINZJEUNN1?autoload=1&app_absent=0">
             <img width="28" src="{% static 'icons/whatsapp.svg' %}" alt="whatsapp" />
           </a>
@@ -18,14 +22,14 @@
       </ul>
       <ul class="navbar-nav mb-lg-0">
         <li class="nav-item" style="color:white;">
-          <!-- prettier-ignore -->
           <a href="https://vk.com/vi_manicure">
             <img width="28" src="{% static 'icons/vk.svg' %}" alt="vk" />
           </a>
         </li>
       </ul>
     </div>
-    <div class="collapse navbar-collapse order-lg-1" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse order-lg-1"
+         id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="#about">Обо мне</a>

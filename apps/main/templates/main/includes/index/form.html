@@ -1,6 +1,7 @@
 {% load widget_tweaks %}
+{% load static %}
 
-<div class="bg-image-4" id="window">
+<div class="bg-image" id="window" style='background-image: url("{% static 'images/bg-4.jpg' %}");background-position: 0% 30%;'>
   <div class="img-overlay d-flex justify-content-center align-items-center">
     <div class="row px-2 w-30">
       <div class="col">
@@ -21,7 +22,10 @@
           </div>
           <div class="row">
             <div class="col text-center">
-              <button type="submit" class="btn btn-warning" hx-post="{% url 'main:index' %}" hx-target="#window">Записаться</button>
+              <button type="submit"
+                      class="btn btn-warning"
+                      hx-post="{% url 'main:index' %}"
+                      hx-target="#window">Записаться</button>
             </div>
           </div>
         </form>

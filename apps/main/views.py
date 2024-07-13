@@ -5,20 +5,21 @@ from django.views.generic import View
 
 from django_htmx.http import retarget
 
-from .models import Window, Review, Client
-from .forms import RegistrationForm
-
 from apps.bot import bot, markup
 
+from .models import Window, Review, Client, Works
+from .forms import RegistrationForm
+from datetime import datetime, timedelta
+
+from django.utils.timezone import get_current_timezone
 
 class MainPageView(View):
 
     def get(self, request):
-        feedback = Review.objects.all()
-        form = RegistrationForm()
         return render(request, 'main/index.html', {
-            'reviews': feedback,
-            'form': form
+            'works': Works.objects.all(),
+            'reviews': Review.objects.all(),
+            'form': RegistrationForm(),
         })
 
     def post(self, request):
