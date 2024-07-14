@@ -9,6 +9,7 @@ from django.utils.timezone import get_current_timezone
 from .models import Window
 
 
+
 def format_phone(value):
     characters_to_remove = punctuation.replace('+', '') + whitespace
     value = ''.join(i for i in value if i not in characters_to_remove)
