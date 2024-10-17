@@ -1,28 +1,23 @@
-[tool.poetry]
-name = "manicure"
+[project]
+name = "vita-manicure"
 version = "0.1.0"
-description = ""
-authors = ["Lewbertsklol <lewbertsklol@gmail.com>"]
+description = "Add your description here"
 readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "django-admin-rangefilter>=0.13.2",
+    "django-htmx>=1.19.0",
+    "django-pwa>=2.0.1",
+    "django-widget-tweaks>=1.5.0",
+    "django>=5.1.2",
+    "gunicorn>=23.0.0",
+    "pytelegrambotapi>=4.23.0",
+    "requests>=2.32.3",
+    "whitenoise>=6.7.0",
+]
 
-[tool.poetry.dependencies]
-python = "^3.12"
-django = "^5.0.6"
-django-htmx = "^1.18.0"
-requests = "^2.32.3"
-gunicorn = "^22.0.0"
-whitenoise = "^6.7.0"
-django-admin-rangefilter = "^0.13.0"
-django-widget-tweaks = "^1.5.0"
-pytelegrambotapi = "^4.20.0"
-django-pwa = "^1.1.0"
-
-
-[tool.poetry.group.dev.dependencies]
-django-livereload-server = "^0.5.1"
-python-dotenv = "^1.0.1"
-
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[tool.uv]
+dev-dependencies = [
+    "django-livereload-server>=0.5.1",
+    "python-dotenv>=1.0.1",
+]

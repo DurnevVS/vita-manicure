@@ -1,0 +1,17 @@
+asgiref==3.8.1
+certifi==2024.8.30
+charset-normalizer==3.4.0
+django==5.1.2
+django-admin-rangefilter==0.13.2
+django-htmx==1.19.0
+django-pwa==2.0.1
+django-widget-tweaks==1.5.0
+gunicorn==23.0.0
+idna==3.10
+packaging==24.1
+pytelegrambotapi==4.23.0
+requests==2.32.3
+sqlparse==0.5.1
+tornado==6.4.1
+urllib3==2.2.3
+whitenoise==6.7.0
