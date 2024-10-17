@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # Frontend
     "django_htmx",
     "widget_tweaks",
+    "livereload",
     # Apps
     "apps.main",
     "apps.bot",
@@ -59,10 +60,6 @@ INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
 ]
-if DEBUG:
-    INSTALLED_APPS += [
-        "livereload",
-    ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
